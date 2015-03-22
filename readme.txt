@@ -12,7 +12,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 Flickr Instagram Picasa Gallery is an awesome gallery plugin to display your Flickr/Instagram/Picasa Albums on your WordPress blog.
+<div class="video">
 <iframe width="560" height="315" src="//www.youtube.com/embed/cnILevtzYN8" frameborder="0" allowfullscreen></iframe>
+</div>
 
 <h3><strong>Key Features & Options</strong></h3>
 <ul>
