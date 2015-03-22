@@ -1,5 +1,6 @@
 === Plugin Name ===
 http://test.wiloke.com/wp-content/uploads/2015/03/instagram-flickr-widget1.zip
+Donate link: http://wiloke.net/donate/
 Contributors: wiloke
 Tags: flickr, picasa,  photostream, javascript, sidebar, gallery, photo, photo gallery, photography, sidebar, instagram, image, images, recent, random, picture
 Requires at least: 3.9
@@ -12,9 +13,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 Flickr Instagram Picasa Gallery is an awesome gallery plugin to display your Flickr/Instagram/Picasa Albums on your WordPress blog.
-<div class="video">
-<iframe width="560" height="315" src="//www.youtube.com/embed/cnILevtzYN8" frameborder="0" allowfullscreen></iframe>
-</div>
+[youtube https://www.youtube.com/embed/cnILevtzYN8]
+
 
 <h3><strong>Key Features & Options</strong></h3>
 <ul>
