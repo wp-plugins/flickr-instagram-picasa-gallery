@@ -128,11 +128,6 @@
 						</div>
 
 						<div class="form-group">
-							<label  class="form-label"><?php _e('Thumbnail Gutter Height', 'wiloke') ?></label>
-							<input type="text" class="form-control pi_item" name="thumbnail_gutter_height" value="">
-						</div>
-
-						<div class="form-group">
 							<label  class="form-label"><?php _e('Max Item Per Line', 'wiloke') ?></label>
 							<input type="text" class="form-control pi_item" name="max_item_per_line" value="">
 						</div>
