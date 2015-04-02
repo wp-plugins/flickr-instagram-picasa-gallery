@@ -4,7 +4,7 @@ Plugin Name: Flickr Instagram  Picasa Gallery
 Plugin URI: http://test.wiloke.com/flickr-instagram-picasa-gallery-plugin/
 Author: wiloke
 Author URI: http://wiloke.com
-Version: 1.0
+Version: 1.1
 Description: Flickr Instagram  Picasa Gallery
 
 License: Under GPL2
@@ -28,6 +28,16 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 if ( !defined('ABSPATH') )
 {	
 	exit();
+}
+
+add_action( 'activated_plugin', 'pi_after_pifg_plugin_active' );
+
+function pi_after_pifg_plugin_active($plugin)
+{
+	if( $plugin == plugin_basename( __FILE__ ) ) 
+	{
+		exit ( wp_redirect( admin_url('admin.php?page=about-wiloke') ) );
+	}
 }
 
 
@@ -54,7 +64,7 @@ function pi_include_js()
 
 	wp_register_script('pi_main', PI_IFG_MD_URL . 'shortcode/js/main.js', array(), '1.0');
 	wp_enqueue_script('pi_main');
-
+	wp_localize_script('pi_main', 'PIFIPIURL', plugin_dir_url(__FILE__) . 'modules/shortcode/img/');
 }
 
 /*front-end scripts*/
@@ -75,6 +85,8 @@ function pi_fe_include_js()
 
 	wp_register_script('pi_main', PI_IFG_SO_URL . 'js/main.js', array(), '1.0', true);
 	wp_enqueue_script('pi_main');
+
+	
 }
 
 /*=========================================*/
@@ -82,3 +94,5 @@ function pi_fe_include_js()
 /*=========================================*/
 require_once( PI_IFG_MD_DIR . 'shortcode/setting.php' );
 require_once( PI_IFG_MD_DIR . 'shortcode/view.php' );
+require_once( PI_IFG_MD_DIR . 'about-wiloke/class.about-wiloke.php' );
+

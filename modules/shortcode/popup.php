@@ -86,7 +86,7 @@
 			</form>
 			
 			<div class="pi_general_settings">
-				<h3 class="pi_click_toggle"><?php _e("General Settings", "wiloke") ?></h3>
+				<h3 class="pi_fig_click_toggle"><?php _e("General Settings", "wiloke") ?></h3>
 				<form action=""  class="pi_general pi_form_setting">
 					<div class="form-group">
 						<label  class="form-label"><?php _e('Theme', 'wiloke') ?></label>
@@ -99,7 +99,7 @@
 			</div>
 
 			<div class="pi_advanced_settings">
-				<h3 class="pi_toggle"><?php _e("Advanced Settings", "wiloke") ?></h3>
+				<h3 class="pi_fig_toggle"><?php _e("Advanced Settings", "wiloke") ?></h3>
 				<form action="" id="pi-ifg-form-general" class="pi_general pi_form_setting">
 					<div class="row">
 
@@ -120,6 +120,11 @@
 							<label  class="form-label"><?php _e('Maximum number of thumbnail lines per page', 'wiloke') ?></label>
 							<input type="text" class="form-control pi_item" name="pagination_max_thumbnail_lines_per_page" value="">
 							<code class="help"><?php _e("0 mean pagination is disabled. Note: Ignored when thumbnail width='auto' or thumbnail height='auto'", "wiloke") ?></code>
+						</div>
+
+						<div class="form-group">
+							<label  class="form-label"><?php _e('Thumbnail Gutter Height', 'wiloke') ?></label>
+							<input type="text" class="form-control pi_item" name="thumbnail_gutter_height" value="">
 						</div>
 
 						<div class="form-group">
