@@ -152,17 +152,21 @@ class PI_ABOUT_WILOKE
 
 	public function pi_wiloke_enqueue_scripts()
 	{
-		wp_register_style('bootstrap', plugin_dir_url(__FILE__) . 'assets/bootstrap.css', array(), '1.0');
-		wp_enqueue_style('bootstrap');
-		
-		wp_register_style('custom', plugin_dir_url(__FILE__) . 'source/css/style.css', array(), '1.0');
-		wp_enqueue_style('custom');
+		$screen = get_current_screen();
+		if ( isset($screen->base) && preg_match('/page_about-wiloke/', $screen->base) )
+		{
+			wp_register_style('bootstrap', plugin_dir_url(__FILE__) . 'assets/bootstrap.css', array(), '1.0');
+			wp_enqueue_style('bootstrap');
+			
+			wp_register_style('custom', plugin_dir_url(__FILE__) . 'source/css/style.css', array(), '1.0');
+			wp_enqueue_style('custom');
 
-		wp_register_script('isotope', plugin_dir_url(__FILE__) . 'assets/isotope.pkgd.min.js', array(), '1.0', true);
-		wp_enqueue_script('isotope');
+			wp_register_script('isotope', plugin_dir_url(__FILE__) . 'assets/isotope.pkgd.min.js', array(), '1.0', true);
+			wp_enqueue_script('isotope');
 
-		wp_register_script('custom', plugin_dir_url(__FILE__) . 'source/js/scripts.js', array(), '1.0', true);
-		wp_enqueue_script('custom');
+			wp_register_script('custom', plugin_dir_url(__FILE__) . 'source/js/scripts.js', array(), '1.0', true);
+			wp_enqueue_script('custom');
+		}
 	}
 
 }
