@@ -43,6 +43,15 @@
 					$putSettings.RTL = true;
 				}
 
+				if (  $settings.pi_thumbnail_label == 'true' )
+				{
+					$putSettings.thumbnailLabel.display = true;
+					$putSettings.thumbnailLabel.position = 'overImageOnMiddle';
+					$putSettings.thumbnailLabel.center = 'center';
+				}else{
+					$putSettings.thumbnailLabel.display = false;
+				}
+
 				if ( $settings.pi_max_width != '' )
 				{
 					$putSettings.maxWidth = parseInt($settings.pi_max_width);

@@ -22,9 +22,10 @@ function pi_ifg($atts)
 		'pi_max_width'							 => '',
 		'pi_instagram_client_id'				 => '',
 		'pi_instagram_user_id'					 => '',
-		'pi_instagram_access_token'			 => '',
+		'pi_instagram_access_token'			 	 => '',
 		'pi_instagram_get'						 => 'popular',
-		'pi_instagram_tagname'					 => ''
+		'pi_instagram_tagname'					 => '',
+		'pi_thumbnail_label'					 => false
 	), $atts);
 	
 	$class = $atts['pi_type'] == 'flickr' || $atts['pi_type'] == 'picasa' ? 'fop' : 'instagram';

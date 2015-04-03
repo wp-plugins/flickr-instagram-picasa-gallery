@@ -1,2 +1,5 @@
 Version: 1.1
 Re-edit shortcode
+
+Version: 1.2
+Fixed: Thumbnail label not working
