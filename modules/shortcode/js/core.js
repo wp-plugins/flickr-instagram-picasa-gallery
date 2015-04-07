@@ -7,7 +7,8 @@
 		var _oFormControl = {
 			flickr: "#pi-ifg-form-flicrk",
 			instagram: "#pi-ifg-form-instagram",
-			picasa: "#pi-ifg-form-picasa"
+			picasa: "#pi-ifg-form-picasa",
+			custom: "#pi-ifg-form-custom"
 		},
 		_popupID = "pi-ifg-popup-wrapper";
 
@@ -15,7 +16,7 @@
 		{
 			editor.addButton('pi_ifg', 
 			{
-			 	text: 'Flickr Instagram Gallery',
+			 	text: 'Flickr Instagram Picasa Gallery',
 		       	icon: false,
 		       	type: 'menubutton',
 		       	menu: 
@@ -54,18 +55,18 @@
 							$(".pi_only_one").addClass("hidden");
 							$("#pi-ifg-form-picasa").addClass("active").removeClass("hidden");
 						},
+					},
+					{	
+						text: 'Custom',
+						onclick: function()
+						{ 	
+							$(".pi_general").slideUp('fast');
+							tb_show("Settings", "#TB_inline?height=800&amp;width=1000&amp;inlineId="+_popupID);
+							$(".pi_form_setting").removeClass("active");
+							$(".pi_only_one").addClass("hidden");
+							$("#pi-ifg-form-custom").addClass("active").removeClass("hidden");
+						},
 					}
-					// {	
-					// 	text: 'Upload Images',
-					// 	onclick: function()
-					// 	{ 	
-					// 		$(".pi_general").slideUp('fast');
-					// 		tb_show("Settings", "#TB_inline?height=800&amp;width=1000&amp;inlineId=pi-ifg-popup-wrapper");
-					// 		$(".pi_form_setting").removeClass("active");
-					// 		$(".pi_only_one").addClass("hidden");
-					// 		$("#pi-ifg-form-upload").addClass("active").removeClass("hidden");
-					// 	},
-					// },
 		       	]
 			})
 
@@ -110,6 +111,8 @@
 				}else if ( match.search('instagram') != -1 )
 				{
 					image = 'instagram.png';
+				}else if (match.search('custom') != -1){
+					image = 'custom.png';
 				}else{
 					image = 'picasa.png';
 				}
@@ -121,10 +124,10 @@
 		function piEditShortcode(ed)
 		{
 			
-			var _self = this, $oInfo = {}, _params = ['pi_theme', 'pi_instagram_get', 'pi_instagram_tagname', 'pi_instagram_client_id', 'pi_instagram_user_id', 'pi_instagram_access_token', 'pi_user_id', 'pi_type', 'pi_photo_set', 'thumbnail_width', 'thumbnail_height', 'pagination_max_thumbnail_lines_per_page', 'thumbnail_gutter_height', 'max_item_per_line', 'pi_breadcrumb'];
+			var _self = this, $oInfo = {}, _params = ['pi_theme', 'pi_instagram_get', 'pi_instagram_tagname', 'pi_thumbnail_label_alignment', 'pi_thumbnail_label_position', 'pi_instagram_client_id', 'pi_instagram_user_id', 'pi_instagram_access_token', 'pi_user_id', 'pi_type', 'pi_photo_set', 'pi_color_scheme', 'pi_item_selectable', 'thumbnail_width', 'thumbnail_height', 'pagination_max_thumbnail_lines_per_page', 'thumbnail_gutter_height', 'max_item_per_line', 'pi_breadcrumb', 'pi_insert_urls', 'pi_thumbnail_alignment', 'pi_thumbnail_lazyload', 'pi_thumbnail_hover_effect', 'pi_image_ids'];
 			ed.on( 'mousedown', function( event ) 
 			{
-				var _target,  _getData, $shortcodeId, parseData, _regex, $control = $("#"+_popupID), $formControl="";
+				var _target,  _getData, $shortcodeId, parseData, _regex, $control = $("#"+_popupID), $formControl="", _aImgs = [], _imgs="", _aIds=[];
 				_target = event.target;
 				if ( _target && $(_target).data("shortcodeid") == "pi_ifg"  )
 				{
@@ -151,7 +154,7 @@
 							/*=========================================*/
 							if ( _params[i] == 'pi_type' )
 							{
-								$("#"+_popupID + " .pi_only_one").addClass("hidden");
+								$(".pi_form_setting").addClass("hidden");
 								$(_oFormControl[_target]).addClass("active").removeClass("hidden");
 
 								if ( _target == 'instagram' )
@@ -160,7 +163,43 @@
 								}
 							}
 
+							if ( _params[i] == 'pi_insert_urls' )
+							{
+								if ( _target !='' )
+								{
+									_aImgs = _target.split(",");
+
+									for ( var _i=0, _max=_aImgs.length; _i<_max; _i++ )
+									{
+										_imgs += '<li class="pi-img-item width-300" data-id="">';
+		                                    _imgs += '<img  src="' + _aImgs[_i] + '" />';
+		                                    _imgs += '<a class="pi-awesome-remove" href="#">';
+		                                        _imgs += '<i class="dashicons dashicons-no"></i>';
+		                                    _imgs += '</a>';
+		                                _imgs += '</li>';
+									}
+
+									$("#pi-ifg-popup-wrapper").find(".pi-awesome-gallery").html(_imgs);
+								}
+							}
+
+
+							if ( _params[i] == 'pi_image_ids' )
+							{
+								if ( _target !='' )
+								{
+									_aIds = _target.split(",");
+									for ( var _i=0, _max=_aIds.length; _i<_max; _i++ )
+									{
+										$("#pi-ifg-popup-wrapper .pi-awesome-gallery li:nth-child("+_i+")").attr("data-id", _aIds[_i]);
+									}
+								}
+							}
+	
+
 							$control.find("[name='"+_params[i]+"']").val(_target);
+							
+							
 
 						}
 						tb_show("Settings", "#TB_inline?height=800&amp;width=1000&amp;inlineId="+_popupID);
@@ -189,14 +228,14 @@
 				return n  ? tinymce.DOM.decode(n[1]) : '';
 			}
 
-			return co.replace(/(?:<p[^>]+>)*(<img[^>]+>)(?:<\/p>)*/g, function(match, img)
+			return co.replace(/(?:<div[^>]+>)*(<img[^>]+>)(?:<\/div>)*/g, function(match, img)
 			{
 			 	_gAttrs      = getAttrs(img, 'data-shortcodes');
 			 	_shortcode   = getShortcode(img, 'data-shortcodeid');
 
 				if ( _shortcode == 'pi_ifg' )
 				{
-					return '[pi_ifg data_shortcodeid=\'pi_ifg\' '+tinymce.trim(_gAttrs)+']';
+					return '<div class="pi_wrap_fipg">[pi_ifg data_shortcodeid=\'pi_ifg\' '+tinymce.trim(_gAttrs)+']</div>';
 				}
 				return match;
 			})			
@@ -250,7 +289,7 @@
 
 		$("#pi-ifg-save").click(function()
 		{
-			var _settings = "", _generalSettings="", _currentHandle, _allow=true;
+			var _settings = "", _formAdvanced="", _generalSettings="", _currentHandle, _allow=true;
 
 			_currentHandle = $(".pi_form_setting.active").data("form");
 
@@ -262,19 +301,27 @@
 						_allow = false;
 					}
 				break;
+
+				case 'custom':
+					if ( $("[name='pi_image_ids']").val() == "" )
+					{
+						_allow = false;
+					}
+				break;
 			}
 
 			if ( _allow == true )
 			{
-				_settings = $(".pi_form_setting.active").getContent();
-				_generalSettings = $("#pi-ifg-form-general").getContent();
-				_settings = '<div class="pi_wrap_fipg">[pi_ifg ' + _settings + ' ' +_generalSettings+']</div>&nbsp;';
+				_settings = $(".pi_form_setting.active").getAwesomeContent();
+				_generalSettings = $("#pi-ifg-form-general").getAwesomeContent();
+				_formAdvanced = $("#pi-ifg-form-advanced").getAwesomeContent();
+				_settings = '<div class="pi_wrap_fipg">[pi_ifg ' + _settings + ' ' +_generalSettings+' '+_formAdvanced+']</div>&nbsp;';
 
 				tinyMCE.activeEditor.execCommand('mceInsertContent', 0, _settings);
 				pi_reset();
 				tb_remove();
 			}else{
-				alert("Please fill all required");
+				alert("Please fill all requires");
 			}
 			return false;
 		})
@@ -289,17 +336,24 @@
 		{
 			document.getElementById("pi-ifg-form-flicrk").reset();
 			document.getElementById("pi-ifg-form-general").reset();		
+			document.getElementById("pi-ifg-form-custom").reset();
+			document.getElementById("pi-ifg-form-instagram").reset();
+			document.getElementById("pi-ifg-form-picasa").reset();
+			document.getElementById("pi-ifg-form-advanced").reset();
+
+			$(".pi-awesome-gallery").empty();
 		}
 
 
-		if ( !$().getContent )
+		if ( !$().getAwesomeContent )
 		{
-			$.fn.getContent = function()
+			$.fn.getAwesomeContent = function()
 			{
-				var $items = $(this).find(".pi_item"), _aSettings = [], _setting;
+				var $items = $(this).find(".pi_item"), _aSettings = [], _setting, _val="";
 				
 				$items.each(function()
 				{
+
 					_setting  = $(this).attr("name") + '="' + $(this).val() + '"';
 					_aSettings.push(_setting);
 				})

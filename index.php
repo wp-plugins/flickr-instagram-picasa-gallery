@@ -1,2 +1,3 @@
 <?php
-// silience is goldern and i like it
+// stay hungry stay foolish
+?>

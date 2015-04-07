@@ -4,7 +4,7 @@ Plugin Name: Flickr Instagram  Picasa Gallery
 Plugin URI: http://test.wiloke.com/flickr-instagram-picasa-gallery-plugin/
 Author: wiloke
 Author URI: http://wiloke.com
-Version: 1.2
+Version: 1.3
 Description: Flickr Instagram  Picasa Gallery
 
 License: Under GPL2
@@ -30,16 +30,14 @@ if ( !defined('ABSPATH') )
 	exit();
 }
 
-add_action( 'activated_plugin', 'pi_after_pifg_plugin_active' );
-
-function pi_after_pifg_plugin_active($plugin)
-{
-	if( $plugin == plugin_basename( __FILE__ ) ) 
-	{
-		exit ( wp_redirect( admin_url('admin.php?page=about-wiloke') ) );
-	}
+function my_admin_notice() {
+    ?>
+    <div class="updated">
+        <p><?php _e( 'Now, It supports self hosted images', 'wiloke' ); ?></p>
+    </div>
+    <?php
 }
-
+add_action( 'admin_notices', 'my_admin_notice' );
 
 define( 'PI_IFG_MD_DIR', plugin_dir_path(__FILE__) . 'modules/' );
 define( 'PI_IFG_MD_URL', plugin_dir_url(__FILE__) . 'modules/' );
@@ -95,4 +93,5 @@ function pi_fe_include_js()
 require_once( PI_IFG_MD_DIR . 'shortcode/setting.php' );
 require_once( PI_IFG_MD_DIR . 'shortcode/view.php' );
 require_once( PI_IFG_MD_DIR . 'about-wiloke/class.about-wiloke.php' );
+
 

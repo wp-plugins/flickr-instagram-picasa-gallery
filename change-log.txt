@@ -4,7 +4,5 @@ Re-edit shortcode
 Version: 1.2
 Fixed: Thumbnail label not working
 
-
-1341331859.6b786eb.9ace0074d6694dd2aba829155f0a064d
-
-1341331859
+Version: 1.3
+Now, you can create gallery with self hosted images

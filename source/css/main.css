@@ -5,3 +5,47 @@
 .pi_toggle{
 	cursor: pointer;
 }
+#TB_ajaxContent{
+	width: 100% !important;
+	box-sizing: border-box;
+ 	-webkit-box-sizing: border-box;
+ 	-moz-box-sizing: border-box;
+ 	-o-box-sizing: border-box;
+}
+.pi_fig_click_toggle{
+	cursor: pointer;
+}
+.pi-awesome-gallery .pi-img-item{
+	list-style: none;
+	display: inline-block;
+	margin-left: 5px;
+	position: relative;
+}
+
+.pi-awesome-gallery{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.pi-awesome-remove{
+	text-decoration: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 99;
+	color: red;
+	background-color: rgba(0,0,0,0.3); 
+}
+
+.pi_form_setting{
+	margin-top: 10px;
+}
+#TB_ajaxContent {
+	overflow: hidden !important;
+	height: auto !important;
+}
+#TB_window {
+	overflow-x: hidden !important;
+	overflow-y: auto !important;
+}
+

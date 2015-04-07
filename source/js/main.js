@@ -1,12 +1,13 @@
 ;(function($, window, document, undefined){
 	"use strict"
 	$(document).ready(function(){
-		var $piFlickrNanoGallery = $(".pi_nano_gallery"), $settings, $putSettings = {}, $id = "", $piInstagram = $(".pi_nano_gallery.instagram");
+		var $piFlickrNanoGallery = $(".pi_nano_gallery"), $settings, $putSettings = {}, $id = "", $piInstagram = $(".pi_nano_gallery.instagram"), $this;
 
 		/*Flickr and picasa*/
 		$piFlickrNanoGallery.each(function()
 		{
-			$settings = $(this).data("settings");
+			$this = $(this);
+			$settings = $this.data("settings");
 
 			if ( $settings != "" && typeof $settings != 'undefined' )
 			{
@@ -21,12 +22,17 @@
 					thumbnailHeight: $settings.thumbnail_height == 0   || $settings.thumbnail_height == '' ? 120 : $settings.thumbnail_height,
 			        viewerDisplayLogo:true,
 			        locationHash:false,
-					thumbnailHoverEffect:[{'name':'labelSlideUp','duration':300},{'name':'borderDarker'}],
-					thumbnailLabel:{display:false,position:'overImageOnBottom',descriptionMaxLength:50},
-			        thumbnailLazyLoad:true,
+					// thumbnailHoverEffect:[{'name':'labelSlideUp','duration':300},{'name':'borderDarker'}],
+					thumbnailLabel:{display:false,position:'overImageOnBottom',descriptionMaxLength:50, hideIcons: true},
+			        thumbnailLazyLoad: $settings.pi_thumbnail_lazyload == 'false' ? false : true,
 			        theme:$settings.pi_theme,
-			        colorScheme:'light'
+			        colorScheme:$settings.pi_color_scheme,
+			        itemsSelectable: $settings.pi_item_selectable == 'true' ? true : false,
+			        thumbnailAlignment: $settings.pi_thumbnail_alignment,
+			        thumbnailHoverEffect: $settings.pi_thumbnail_hover_effect
 				};
+
+
 
 				if ( $settings.pagination_max_thumbnail_lines_per_page != '' )
 				{
@@ -46,8 +52,8 @@
 				if (  $settings.pi_thumbnail_label == 'true' )
 				{
 					$putSettings.thumbnailLabel.display = true;
-					$putSettings.thumbnailLabel.position = 'overImageOnMiddle';
-					$putSettings.thumbnailLabel.center = 'center';
+					$putSettings.thumbnailLabel.position = $settings.pi_thumbnail_label_position;
+					$putSettings.align 	= $settings.pi_thumbnail_label_alignment;
 				}else{
 					$putSettings.thumbnailLabel.display = false;
 				}
@@ -58,17 +64,27 @@
 				}
 
 
+				/*	If the width is auto and set max-item-perline, cal */
+				// if ( $putSettings.thumbnailWidth == 'auto' &&  $settings.max_item_per_line !='' && $settings.max_item_per_line != 0 )
+				// {
+				// 	var _parentWidth = $this.parent().innerWidth();
+				// 		$putSettings.thumbnailWidth = Math.floor(_parentWidth/($settings.max_item_per_line));
+				// }
+
+				console.log($putSettings.thumbnailAlignment);
 				/*=========================================*/
 				/*	Flickr and Picasa Settings
 				/*=========================================*/
-				if ( $(this).hasClass("fop") )
+				if ( $this.hasClass("fop") )
 				{
 					$putSettings.userID  = $settings.pi_user_id;
 					$putSettings.kind    = $settings.pi_type;
 					$putSettings.display = true;
-					$(this).nanoGallery($putSettings);
+					$this.nanoGallery($putSettings);
+				}else if($this.hasClass("instagram") ){
+					pi_get_instagram($settings, $putSettings, $this);
 				}else{
-					pi_get_instagram($settings, $putSettings, $(this));
+					$this.nanoGallery($putSettings);
 				}
 
 

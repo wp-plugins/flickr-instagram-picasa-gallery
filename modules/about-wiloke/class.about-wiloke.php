@@ -59,6 +59,12 @@ class PI_ABOUT_WILOKE
 				'description'	=> 'Onepage Wordpress Theme',
 				'link'			=> 'http://wiloke.com/blog/hercules-onepage-wordpress-theme/'
 			),
+			array(
+				'image'			=> 'winters.jpg',
+				'title'			=> 'Winters',
+				'description'	=> 'Creative Blog',
+				'link'			=> 'http://themeforest.net/item/winters-blog-wordpress-theme/11012757'
+			),
 		)
 	);
 

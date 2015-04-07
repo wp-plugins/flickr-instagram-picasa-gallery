@@ -1,5 +1,4 @@
 <div id="pi-ifg-popup-wrapper" style="display:none;">
-	
 	<div class="container-fluid" style="width: 100%; max-width:100%">
 		<div class="row">
 
@@ -13,29 +12,28 @@
 				<div class="form-group">
 					<label  class="form-label"><?php _e('Photo Set', 'wiloke') ?></label>
 					<input type="text" class="form-control pi_item" name="pi_photo_set" value="">
-					<code class="help"><?php _e("Display only the specified photoID, 'none' to display all photo stream, leave empty to display albumn", "wiloke") ?></code>
+					<code class="help"><?php _e("Display only the specified photoID,Enter 'none' to display all photo stream, leave empty to display albumn", "wiloke") ?></code>
 				</div>
 
 				<div class="form-group">
 					<input type="hidden" class="form-control pi_item" name="pi_type" value="flickr">
 				</div>
 			</form>
-
-
-		<!-- 	<form action="" id="pi-ifg-form-upload" class="pi_upload pi_only_one pi_form_setting" data-form="upload">
-				<div class="form-group awe-wrap-upload">
-					<label  class="form-label"><?php _e('Upload', 'wiloke') ?></label>
-					<input type="text" class="form-control pi_item pi_required awe_insert_val" name="pi_user_id" value="">
-					<div class="pi-gallery">
+			
+			<form action="" id="pi-ifg-form-custom" class="pi_custom pi_only_one pi_form_setting" data-form="custom">
+				<div class="form-group pi-wrap-upload">
+					<input type="text" class="form-control pi_item pi_required pi_insert_val" name="pi_image_ids" value="">
+					<input type="hidden" data-url="true" class="form-control pi_item pi_insert_urls" name="pi_insert_urls" value="">
+					<div class="pi-awesome-gallery clearfix">
 						
 					</div>
-					<button class="button button-primary js_upload" data-multiple="true" data-insertto="pi-gallery"><?php _e('Upload', 'wiloke') ?></button>
+					<button class="button button-primary pi_awesome_gallery" data-multiple="true" data-insertto=".pi-awesome-gallery"><?php _e('Upload', 'wiloke') ?></button>
 				</div>
 				
 				<div class="form-group">
-					<input type="hidden" class="form-control pi_item" name="pi_type" value="upload">
+					<input type="hidden" class="form-control pi_item" name="pi_type" value="custom">
 				</div>
-			</form> -->
+			</form>
 
 			<form action="" id="pi-ifg-form-instagram" class="pi_instagram pi_only_one pi_form_setting" data-form="instagram">
 				<div class="form-group">
@@ -80,6 +78,7 @@
 					<input type="text" class="form-control pi_item" name="pi_user_id" value="">
 					<code class="help"><?php _e('Find User ID at', 'wiloke'); ?><a target="_blank" style="color:red" href="http://01241.com/04/09/find-the-picasa-user-id/"> Picasa User id </a></code>
 				</div>
+
 				<div class="form-group">
 					<input type="hidden" class="form-control pi_item" name="pi_type" value="picasa">
 				</div>
@@ -87,39 +86,59 @@
 			
 			<div class="pi_general_settings">
 				<h3 class="pi_fig_click_toggle"><?php _e("General Settings", "wiloke") ?></h3>
-				<form action=""  class="pi_general pi_form_setting">
+				<form action="" id="pi-ifg-form-general"  class="pi_general pi_form_setting">
 					<div class="form-group">
 						<label  class="form-label"><?php _e('Theme', 'wiloke') ?></label>
 						<select name="pi_theme" id="pi_theme" class="form-control pi_item">
-							<option value="clean"><?php _e("Clean", "wiloke"); ?></option>
 							<option value="light"><?php _e("Light", "wiloke"); ?></option>
+							<option value="default"><?php _e("Dark", "wiloke"); ?></option>
+							<option value="clean"><?php _e("Clean", "wiloke"); ?></option>
 						</select>
 					</div>
+
+					<div class="form-group">
+						<label  class="form-label"><?php _e('Sets the thumbnail alignment', 'wiloke') ?></label>
+						<select name="pi_thumbnail_alignment" id="pi_thumbnail_alignment" class="form-control pi_item">
+							<option value="justified"><?php _e("Justified", "wiloke"); ?></option>
+							<option value="center"><?php _e("Center", "wiloke"); ?></option>
+							<option value="left"><?php _e("Left", "wiloke"); ?></option>
+							<option value="right"><?php _e("Right", "wiloke"); ?></option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label  class="form-label"><?php _e('Lazy load of thumbnails image', 'wiloke') ?></label>
+						<select name="pi_thumbnail_lazyload" id="pi_thumbnail_lazyload" class="form-control pi_item">
+							<option value="true"><?php _e("True", "wiloke"); ?></option>
+							<option value="false"><?php _e("False", "wiloke"); ?></option>
+						</select>
+					</div>
+
 				</form>
 			</div>
 
 			<div class="pi_advanced_settings">
 				<h3 class="pi_fig_toggle"><?php _e("Advanced Settings", "wiloke") ?></h3>
-				<form action="" id="pi-ifg-form-general" class="pi_general pi_form_setting">
+				<form action="" id="pi-ifg-form-advanced" class="pi_general pi_form_setting">
 					<div class="row">
 
 						<div class="form-group">
 							<label  class="form-label"><?php _e('Thumbnail Width', 'wiloke') ?></label>
 							<input type="text" class="form-control pi_item" name="thumbnail_width" value="">
-							<code class="help"><?php _e("0 mean auto", "wiloke") ?></code>
+							<code class="help"><?php _e("0: auto", "wiloke") ?></code>
 						</div>
 
 						<div class="form-group">
 							<label  class="form-label"><?php _e('Thumbnail Height', 'wiloke') ?></label>
 							<input type="text" class="form-control pi_item" name="thumbnail_height" value="">
-							<code class="help"><?php _e("0 mean auto", "wiloke") ?></code>
+							<code class="help"><?php _e("0: auto", "wiloke") ?></code>
 						</div>
 
 					
 						<div class="form-group">
 							<label  class="form-label"><?php _e('Maximum number of thumbnail lines per page', 'wiloke') ?></label>
 							<input type="text" class="form-control pi_item" name="pagination_max_thumbnail_lines_per_page" value="">
-							<code class="help"><?php _e("0 mean pagination is disabled. Note: Ignored when thumbnail width='auto' or thumbnail height='auto'", "wiloke") ?></code>
+							<code class="help"><?php _e("0: pagination is disabled. Note: Ignored when thumbnail  width='auto' or  thumbnail  height='auto'", "wiloke") ?></code>
 						</div>
 
 						<div class="form-group">
@@ -147,10 +166,96 @@
 								<option value="false"><?php _e("False", "wiloke") ?></option>
 							</select>
 						</div>
+
+						<div class="form-group">
+							<label  class="form-label"><?php _e('Thumbnail label alignment', 'wiloke') ?></label>
+							<select name="pi_thumbnail_label_alignment" id="pi_thumbnail_label_alignment" class="form-control pi_item">
+								<option value="center"><?php _e("Center", "wiloke"); ?></option>
+								<option value="justified"><?php _e("Justified", "wiloke"); ?></option>
+								<option value="left"><?php _e("Left", "wiloke"); ?></option>
+								<option value="right"><?php _e("Right", "wiloke"); ?></option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label  class="form-label"><?php _e('Thumbnail label position', 'wiloke') ?></label>
+							<select name="pi_thumbnail_label_position" id="pi_thumbnail_label_position" class="form-control pi_item">
+								<option value="overImageOnBottom"><?php _e("overImageOnBottom", "wiloke"); ?></option>
+								<option value="overImageOnTop"><?php _e("overImageOnTop", "wiloke"); ?></option>
+								<option value="overImageOnMiddle"><?php _e("overImageOnMiddle", "wiloke"); ?></option>
+								<option value="onBottom"><?php _e("onBottom", "wiloke"); ?></option>
+							</select>
+						</div>
+
 						
 						<div class="form-group">
 							<label  class="form-label"><?php _e('Max width', 'wiloke') ?></label>
 							<input type="text" class="form-control pi_item" name="pi_max_width" value="">
+						</div>
+
+						<div class="form-group">
+							<label  class="form-label"><?php _e('Gallery color scheme', 'wiloke') ?></label>
+							<select name="pi_color_scheme" class="form-control pi_item">
+								<option value="none"><?php _e("none", "wiloke") ?></option>
+								<option value="dark"><?php _e("dark", "wiloke") ?></option>
+								<option value="darkRed"><?php _e("darkRed", "wiloke") ?></option>
+								<option value="darkGreen"><?php _e("darkGreen", "wiloke") ?></option>
+								<option value="darkBlue"><?php _e("darkBlue", "wiloke") ?></option>
+								<option value="darkOrange"><?php _e("darkOrange", "wiloke") ?></option>
+								<option value="light"><?php _e("light", "wiloke") ?></option>
+								<option value="lightBackground"><?php _e("lightBackground", "wiloke") ?></option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label  class="form-label"><?php _e('Thumbnail mouse hover effect.', 'wiloke') ?></label>
+							<select name="pi_thumbnail_hover_effect" class="form-control pi_item">
+								<option value="slideUp"><?php _e("slideUp", "wiloke") ?></option>
+								<option value="slideDown"><?php _e("slideDown", "wiloke") ?></option>
+								<option value="slideRight"><?php _e("slideRight", "wiloke") ?></option>
+								<option value="slideLeft"><?php _e("slideLeft", "wiloke") ?></option>
+								<option value="borderLighter"><?php _e("borderLighter", "wiloke") ?></option>
+								<option value="borderDarker"><?php _e("borderDarker", "wiloke") ?></option>
+								<option value="scale120"><?php _e("scale120", "wiloke") ?></option>
+								<option value="scaleLabelOverImage"><?php _e("scaleLabelOverImage", "wiloke") ?></option>
+								<option value="overScale"><?php _e("overScale", "wiloke") ?></option>
+								<option value="rotateCornerBL"><?php _e("rotateCornerBL", "wiloke") ?></option>
+								<option value="rotateCornerBR"><?php _e("rotateCornerBR", "wiloke") ?></option>
+								<option value="imageScale150"><?php _e("imageScale150", "wiloke") ?></option>
+								<option value="imageScaleIn80"><?php _e("imageScaleIn80", "wiloke") ?></option>
+								<option value="imageScale150Outside"><?php _e("imageScale150Outside", "wiloke") ?></option>
+								<option value="imageSplit4"><?php _e("imageSplit4", "wiloke") ?></option>
+								<option value="imageSlideUp"><?php _e("imageSlideUp", "wiloke") ?></option>
+								<option value="imageSlideDown"><?php _e("imageSlideDown", "wiloke") ?></option>
+								<option value="imageSlideRight"><?php _e("imageSlideRight", "wiloke") ?></option>
+								<option value="imageSlideLeft"><?php _e("imageSlideLeft", "wiloke") ?></option>
+								<option value="imageRotateCornerBL"><?php _e("imageRotateCornerBL", "wiloke") ?></option>
+								<option value="imageRotateCornerBR"><?php _e("imageRotateCornerBR", "wiloke") ?></option>
+								<option value="imageFlipHorizontal"><?php _e("imageFlipHorizontal", "wiloke") ?></option>
+								<option value="imageFlipVertical"><?php _e("imageFlipVertical", "wiloke") ?></option>
+								<option value="labelAppear"><?php _e("labelAppear", "wiloke") ?></option>
+								<option value="labelAppear75"><?php _e("labelAppear75", "wiloke") ?></option>
+								<option value="labelOpacity50"><?php _e("labelOpacity50", "wiloke") ?></option>
+								<option value="descriptionAppear"><?php _e("descriptionAppear", "wiloke") ?></option>
+								<option value="descriptionSlideUp"><?php _e("descriptionSlideUp", "wiloke") ?></option>
+								<option value="labelSlideUpTop"><?php _e("labelSlideUpTop", "wiloke") ?></option>
+								<option value="labelSlideUp"><?php _e("labelSlideUp", "wiloke") ?></option>
+								<option value="labelSlideDown"><?php _e("labelSlideDown", "wiloke") ?></option>
+								<option value="labelSplit4"><?php _e("labelSplit4", "wiloke") ?></option>
+								<option value="labelAppearSplit4"><?php _e("labelAppearSplit4", "wiloke") ?></option>
+								<option value="labelAppearSplitVert"><?php _e("labelAppearSplitVert", "wiloke") ?></option>
+								<option value="none"><?php _e("None", "wiloke") ?></option>
+							</select>
+							<code class="help"><?php _e('Please note that some effects can not be combined (for example: \'imageSlideUp\' and \'imageFlipHorizontal\').', 'wiloke'); ?></code>
+						</div>
+
+
+						<div class="form-group">
+							<label  class="form-label"><?php _e('Enables thumbnail selection', 'wiloke') ?></label>
+							<select name="pi_item_selectable" id="pi_item_selectable" class="form-control pi_item">
+								<option value="false"><?php _e("False", "wiloke") ?></option>
+								<option value="true"><?php _e("True", "wiloke") ?></option>
+							</select>
 						</div>
 
 						<div class="form-group">
@@ -164,13 +269,11 @@
 					</div>
 				</form>
 			</div>
-		
-	
-		<div class="form-group">
-			<button id="pi-ifg-save" class="button button-primary pi-popup-save"><?php _e('Save', 'wiloke') ?></button>
-			<button id="pi-ifg-cancel" class="button button-primary pi-popup-cancel"><?php _e('Cancel', 'wiloke') ?></button>
+
+			<div class="form-group">
+				<button id="pi-ifg-save" class="button button-primary pi-popup-save"><?php _e('Save', 'wiloke') ?></button>
+				<button id="pi-ifg-cancel" class="button button-primary pi-popup-cancel"><?php _e('Cancel', 'wiloke') ?></button>
+			</div>
 		</div>
-
 	</div>
-
 </div>

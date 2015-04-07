@@ -2,19 +2,20 @@
 
 	"use strict"
 
-    if ( !$().pi_upload )
+    if ( !$().pi_awesome_upload )
     {
-    	$.fn.pi_upload  = function()
+    	$.fn.pi_awesome_upload  = function()
     	{
-    		var _oDefaults = {}, _self, $getData, isMultile = false, file_frame, $insertTo, $insertVal, $parent;
+    		var _oDefaults = {}, _self, $getData, isMultile = false, file_frame, $insertTo, $insertVal, $parent, $insertUrls;
     	
     		$(this).bind("click",function()
     		{
                 _self      = $(this);
                 $getData   = _self.data();
-                $parent    = _self.closest(".awe-wrap-upload");
+                $parent    = _self.closest(".pi-wrap-upload");
                 $insertTo  = $parent.find($getData.insertto);
-                $insertVal = $parent.find(".awe_insert_val");
+                $insertVal = $parent.find(".pi_insert_val");
+                $insertUrls = $parent.find(".pi_insert_urls");
               	
 
                 if ( typeof $getData.multiple != 'undefined' )
@@ -41,7 +42,7 @@
                     switch (isMultile)
                     {
                         case true:
-                            var ids = [], urls = [], idsurls = [];
+                            var ids = [], urls = [], idsurls = [], _imgs="", _oldids, _oldurls="";
 
                             selection.map(function(attachment)
                             {
@@ -56,30 +57,43 @@
                                 }
                             });
 
-                            var oldids = $.map($insertVal.val().split(","), function(value)
+                            if ( typeof $insertVal.val() != 'undefined' )
                             {
-                                if (value != "")
-                                    return parseInt(value, 10);
-                            });
-                            
-                            var $imgs = "", $slider="", $aweImages="";
+                                _oldids = $.map($insertVal.val().split(","), function(value)
+                                {
+                                    if (value != "")
+                                        return parseInt(value, 10);
+                                });
 
+                                _oldurls = $.map($insertUrls.val().split(","), function(value)
+                                {
+                                    if (value != "")
+                                        return value;
+                                });
+                            }
+                            
+                           
                             for (var j = 0; j < ids.length; j++)
                             {
-                                oldids.push(ids[j]); 
+                                if (  typeof _oldids !='undefined' )
+                                {
+                                    _oldids.push(ids[j]);
+                                    _oldurls.push(urls[j]);
+                                }
 
-                                $imgs += '<li class="attachment img-item width-300" data-id="'+ids[j]+'">';
-                                    $imgs += '<img  src="' + urls[j] + '" />';
-                                    $imgs += '<a class="awe-remove" href="#">';
-                                        $imgs += '<i class="fa fa-times"></i>';
-                                    $imgs += '</a>';
-                                $imgs += '</li>';
+                                _imgs += '<li class="pi-img-item width-300" data-id="'+ids[j]+'">';
+                                    _imgs += '<img  src="' + urls[j] + '" />';
+                                    _imgs += '<a class="pi-awesome-remove" href="#">';
+                                        _imgs += '<i class="dashicons dashicons-no"></i>';
+                                    _imgs += '</a>';
+                                _imgs += '</li>';
                             }
 
 
-                            $insertVal.val(oldids);
+                            $insertVal.val(_oldids);
+                            $insertUrls.val(_oldurls);
 
-                            $insertTo.append($imgs);
+                            $insertTo.append(_imgs);
 
                             break;
 
@@ -111,9 +125,79 @@
                 file_frame.open();
                 return false;
             })   
-    	}	
-    	$(document).ready(function(){
-    		$(".js_upload").pi_upload();
-    	})
+    	}
     }
+
+
+    var pi_awesome_remove = function()
+    {
+        $(document).on("click", ".pi-awesome-remove", function(event)
+        {
+            event.preventDefault();
+            var $this = $(this), _getVal="", _index, _oldids, $insertVal, $insertUrl, _getUrl, _oldurls, _oResult;
+
+            $insertVal = $this.closest(".pi-wrap-upload").find(".pi_insert_val");
+            _getVal    = $insertVal.val();
+
+            $insertUrl = $this.closest(".pi-wrap-upload").find(".pi_insert_urls");
+            _getUrl    = $insertUrl.val();
+           
+            
+            _index = $this.parent().data("id");
+
+            _oldids = $.map(_getVal.split(','), function(value)
+            {
+                if (value != "")
+                    return parseInt(value);
+            });
+
+            _oldurls = $.map(_getUrl.split(','), function(value)
+            {
+                if (value != "")
+                    return value;
+            });
+
+           
+            
+            _oResult  = pi_awesome_remove_id(_oldids, _index, _oldurls);
+            _oldids   = _oResult.ids;
+            _oldurls  = _oResult.urls;
+
+            if ( _oldids !='' )
+            {
+                $insertVal.val(_oldids.join(","));
+                $insertUrl.val(_oldurls.join(","));
+            }else{
+                $insertVal.val("");
+                $insertUrl.val("");
+            }
+            
+           
+            $this.parent().fadeOut('slow', function() 
+            {
+               $this.remove();
+            });
+           
+        });
+    }
+
+    var pi_awesome_remove_id = function(arr, id, urls)
+    {
+        for(var i=0; i<arr.length; i++)
+        {
+           if (arr[i] == id || typeof arr[i] == id)
+           {
+              arr.splice(i, 1);
+              urls.splice(i, 1);
+           }
+        }
+      
+        return {ids: arr, urls: urls};
+    }
+
+
+    $(document).ready(function(){
+        $(".pi_awesome_gallery").pi_awesome_upload();
+        pi_awesome_remove();
+    })
 })(jQuery, window, document)
