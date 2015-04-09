@@ -30,14 +30,27 @@ if ( !defined('ABSPATH') )
 	exit();
 }
 
-function my_admin_notice() {
+function pi_admin_notice() {
+	if ( isset($_POST['pi_dismiss']) )
+	{
+		update_option('pi_fig_dismiss', true);
+	}
+
+	if ( get_option('pi_fig_dismiss') === false )
+	{
     ?>
     <div class="updated">
-        <p><?php _e( 'Now, It supports self hosted images', 'wiloke' ); ?></p>
+        <p><?php _e( 'Now, It supports self hosted images', 'wiloke' ); ?>
+        <form action="" method="POST">
+        	<input type="hidden" name="pi_dismiss">
+        	<button><?php _e('Dismiss', 'wiloke');?></button>
+        </form>
+        </p>
     </div>
     <?php
+	}
 }
-add_action( 'admin_notices', 'my_admin_notice' );
+add_action( 'admin_notices', 'pi_admin_notice' );
 
 define( 'PI_IFG_MD_DIR', plugin_dir_path(__FILE__) . 'modules/' );
 define( 'PI_IFG_MD_URL', plugin_dir_url(__FILE__) . 'modules/' );
