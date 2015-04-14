@@ -4,7 +4,7 @@ Plugin Name: Flickr Instagram  Picasa Gallery
 Plugin URI: http://test.wiloke.com/flickr-instagram-picasa-gallery-plugin/
 Author: wiloke
 Author URI: http://wiloke.com
-Version: 1.3
+Version: 1.3.1
 Description: Flickr Instagram  Picasa Gallery
 
 License: Under GPL2
