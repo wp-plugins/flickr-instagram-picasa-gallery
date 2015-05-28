@@ -71,7 +71,7 @@
 				// 		$putSettings.thumbnailWidth = Math.floor(_parentWidth/($settings.max_item_per_line));
 				// }
 
-				console.log($putSettings.thumbnailAlignment);
+				
 				/*=========================================*/
 				/*	Flickr and Picasa Settings
 				/*=========================================*/
@@ -79,6 +79,13 @@
 				{
 					$putSettings.userID  = $settings.pi_user_id;
 					$putSettings.kind    = $settings.pi_type;
+					
+					if ( $settings.pi_album_id != '' )
+					{
+						$putSettings.album	 =  $settings.pi_album_id;
+						$putSettings.photoSorting = $settings.pi_sort_album;
+					}
+
 					$putSettings.display = true;
 					$this.nanoGallery($putSettings);
 				}else if($this.hasClass("instagram") ){

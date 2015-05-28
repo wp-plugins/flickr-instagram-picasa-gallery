@@ -33,7 +33,9 @@ function pi_ifg($atts)
 		'pi_thumbnail_hover_effect'				 => 'slideUp',
 		'pi_thumbnail_lazyload'					 => true,
 		'pi_thumbnail_label_alignment'			 => 'center',
-		'pi_thumbnail_label_position'			 => 'overImageOnMiddle'
+		'pi_thumbnail_label_position'			 => 'overImageOnMiddle',
+		'pi_album_id'							 => '',
+		'pi_sort_album'							 => 'standard'
 	), $atts);
 	
 	$class = $atts['pi_type'] == 'flickr' || $atts['pi_type'] == 'picasa' ? 'fop' : 'instagram';

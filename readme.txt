@@ -4,8 +4,8 @@ Donate link: http://wiloke.net/donate/
 Contributors: wiloke
 Tags: flickr, picasa,  photostream, javascript, sidebar, gallery, photo, photo gallery, photography, sidebar, instagram, image, images, recent, random, picture
 Requires at least: 3.9
-Tested up to:  4.2.1
-Stable tag:  4.2.1
+Tested up to:  4.1.1
+Stable tag:  4.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

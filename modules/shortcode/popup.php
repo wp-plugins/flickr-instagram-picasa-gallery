@@ -73,12 +73,23 @@
 			</form>
 
 			<form action="" id="pi-ifg-form-picasa" class="pi_picasa pi_only_one pi_form_setting" data-form="picasa">
-				<div class="form-group pi_picasa_settings pi_users">
+				<div class="form-group pi_picasa_settings">
 					<label  class="form-label"><?php _e('User ID - Unique id of a user to get.', 'wiloke') ?></label>
 					<input type="text" class="form-control pi_item" name="pi_user_id" value="">
 					<code class="help"><?php _e('Find User ID at', 'wiloke'); ?><a target="_blank" style="color:red" href="http://01241.com/04/09/find-the-picasa-user-id/"> Picasa User id </a></code>
 				</div>
-
+				<div class="form-group pi_picasa_settings">
+					<label  class="form-label"><?php _e('Album ID- To display only the specified album', 'wiloke') ?></label>
+					<input type="text" class="form-control pi_item" name="pi_album_id" value="">
+				</div>
+				<div class="form-group pi_picasa_settings pi_sort_album">
+					<label  class="form-label"><?php _e('Sort', 'wiloke') ?></label>
+					<select name="pi_sort_album" id="pi_sort_album" class="form-control pi_item">
+						<option value="standard">standard</option>
+						<option value="reversed">reversed</option>
+						<option value="random">random</option>
+					</select>
+				</div>
 				<div class="form-group">
 					<input type="hidden" class="form-control pi_item" name="pi_type" value="picasa">
 				</div>

@@ -124,7 +124,7 @@
 		function piEditShortcode(ed)
 		{
 			
-			var _self = this, $oInfo = {}, _params = ['pi_theme', 'pi_instagram_get', 'pi_instagram_tagname', 'pi_thumbnail_label', 'pi_thumbnail_label_alignment', 'pi_thumbnail_label_position', 'pi_instagram_client_id', 'pi_instagram_user_id', 'pi_instagram_access_token', 'pi_user_id', 'pi_type', 'pi_photo_set', 'pi_color_scheme', 'pi_item_selectable', 'thumbnail_width', 'thumbnail_height', 'pagination_max_thumbnail_lines_per_page', 'thumbnail_gutter_height', 'max_item_per_line', 'pi_breadcrumb', 'pi_insert_urls', 'pi_thumbnail_alignment', 'pi_thumbnail_lazyload', 'pi_thumbnail_hover_effect', 'pi_image_ids'];
+			var _self = this, $oInfo = {}, _params = ['pi_theme', 'pi_instagram_get', 'pi_instagram_tagname', 'pi_thumbnail_label', 'pi_thumbnail_label_alignment', 'pi_thumbnail_label_position', 'pi_instagram_client_id', 'pi_instagram_user_id', 'pi_instagram_access_token', 'pi_user_id', 'pi_type', 'pi_photo_set', 'pi_color_scheme', 'pi_item_selectable', 'thumbnail_width', 'thumbnail_height', 'pagination_max_thumbnail_lines_per_page', 'thumbnail_gutter_height', 'max_item_per_line', 'pi_breadcrumb', 'pi_insert_urls', 'pi_thumbnail_alignment', 'pi_thumbnail_lazyload', 'pi_thumbnail_hover_effect', 'pi_image_ids', 'pi_album_id', 'pi_sort_album'];
 			ed.on( 'mousedown', function( event ) 
 			{
 				var _target,  _getData, $shortcodeId, parseData, _regex, $control = $("#"+_popupID), $formControl="", _aImgs = [], _imgs="", _aIds=[];
